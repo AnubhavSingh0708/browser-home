@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <style>
+body{
+background-color: black;
+color: rgb(160, 225, 255);
+display: flex;
+  align-items: center;
+  justify-content: center;
+}
+*{
+  transition: all 0.4s ease;
+}
+#notep{
+  position: fixed;
+  bottom: 20px;
+  height:200px;
+  width:700px;
+  border-radius: 25px;
+  padding: 20px;
+  background-color: #ffffff1e;
+  backdrop-filter: blur(10px);
+}
+img{
+  width: 90px;
+  position: fixed;
+  top:calc(54vh - 50px);
+  left: calc(50% - 55px);
+  height: 90px;
+  background-color: rgb(155, 18, 0);
+  border-radius: 45px;
+  padding: 10px;
+  background-origin: border-box;
+}
+[contenteditable]:focus {
+    outline: 0px solid transparent;
+}
+video{
+  width: 100%;
+  position: fixed;
+  z-index: -10;
+  top: 0;
+  left: 0;
+}
+
+#search:focus{
+  outline: none;
+  animation-name: example;
+  animation-duration: 0.7s;
+  background-color: #ffffff3e;
+}
+
+
+@keyframes example {
+  0%   {background-image: linear-gradient(99deg, #ffffff3e ,#ffffff0e,#ffffff0e,#ffffff0e);}
+  25%  {background-image: linear-gradient(99deg, #ffffff0e ,#ffffff3e,#ffffff0e,#ffffff0e);}
+  50%  {background-image: linear-gradient(99deg, #ffffff0e ,#ffffff0e,#ffffff3e,#ffffff0e);}
+  100% {background-color:linear-gradient(99deg, #ffffff0e ,#ffffff0e,#ffffff0e,#ffffff3e);;}
+}
+
+#search{
+  grid-column: 1 / 7;
+  grid-row: 1;
+  border-radius: 20px 20px 0px 0px;
+  background-color: #ffffff2e;
+  font-size: larger;
+  padding: 10px;
+  border: none;
+  color: rgb(160, 225, 255);
+}
+
+.og{
+  border-radius: 0px 0px 20px 20px;
+  background-color: #ffffff2e;
+  line-height: 55px;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-origin: content-box;
+  padding: 10px;
+}
+.op{
+  line-height: 55px;
+  text-align: center;
+  background-color: #ffffff0e;
+  background-origin: content-box;
+  border-radius: 20px;
+  margin: 10px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-origin: content-box;
+  padding: 5px;
+}
+.op:hover{
+  background-color: #ffffff1e;
+ margin: 4px;
+}
+.pin{
+  text-align: center;
+  background-color: #ffffff1e;
+  background-origin: content-box;
+  border-radius: 20px;
+  margin: 10px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-origin: content-box;
+  padding: 5px;
+}
+.clock {
+  position: fixed;
+  top: calc(50vh - 145px);
+  border-radius: 100%;
+  background:#00000000;
+  font-family: "Montserrat";
+  border: 5px solid rgb(161, 213, 255);
+  box-shadow: inset 2px 3px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.wrap {
+  overflow: hidden;
+  position: relative;
+  width: 350px;
+  height: 350px;
+  border-radius: 100%;
+}
+
+#wrap {
+  backdrop-filter: blur(10px);
+  background-color: #ffffff1e;
+  border-radius: 30px;
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: repeat(6, 150px);
+  gap: 0px;
+  grid-auto-rows: minmax(55px, auto);
+  padding: 10px;
+  font-size: large;
+}
+#wrap2 {
+  position: fixed;
+  right: 55px;
+  top:calc(50vh / 7);
+  backdrop-filter: blur(10px);
+  background-color: #ffffff1e;
+  border-radius: 30px;
+  display: grid;
+  grid-template-columns: repeat(1, calc(100vh / 7));
+  gap: 0px;
+  grid-auto-rows: minmax(calc(100vh / 7 ), auto);
+  padding: 10px;
+  font-size: large;
+}
+
+.minute,
+.hour {
+  position: absolute;
+  height: 130px;
+  width: 6px;
+  margin: auto;
+  top: -27%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgb(169, 224, 255);
+  transform-origin: bottom center;
+  transform: rotate(0deg);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.minute {
+  position: absolute;
+  height: 180px;
+  width: 4px;
+  top: -38%;
+  left: 0;
+  box-shadow: 0 0 10px 0 rgb(165, 204, 255);
+  transform: rotate(90deg);
+}
+
+.second {
+  position: absolute;
+  height: 190px;
+  width: 2px;
+  margin: auto;
+  top: -26%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 4px;
+  background: #FF4B3E;
+  transform-origin: bottom center;
+  transform: rotate(180deg);
+  z-index: 1;
+}
+
+.dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 100px;
+  background: white;
+  border: 2px solid #1b1b1b;
+  border-radius: 100px;
+  margin: auto;
+  z-index: 1;
+}
+    </style>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body >
+
+    <div id="wrap" >
+    <input type="text" name="" id="search" placeholder="search here">
+    <div class="og" style="background-image: url(google.png);"></div>
+    <div class="op" style="background-image: url(wiki.png);"></div>
+    <div class="op" style="background-image: url(lens.png);"></div>
+    <div class="op" style="background-image: url(hf.png);"></div>
+    <div class="op" style="background-image: url(duck.png);"></div>
+    <div class="op" style="background-image: url(git.webp);"></div>
+    </div>
+
+    
+    <div class="clock">
+      <div class="wrap">
+        <span class="hour"></span>
+        <span class="minute"></span>
+        <span class="second"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+    <div id ="notep" contenteditable="true">
+      <div style="font-size: xx-large; width: fit-content;padding: 10px;border-radius: 20px; background-color: #ffffff1e;">Title</div>
+    <div id ="note" contenteditable="true">hey there</div>
+  </div>
+   <video src="0000-0150.mp4" autoplay muted loop></video>
+   <img onclick="location.assign('https://www.youtube.com');" src="Youtube_logo.png" alt="">
+
+
+<div id="wrap2">
+  <div class="pin"></div>
+  <div class="pin"></div>
+  <div class="pin"></div>
+  <div class="pin"></div>
+  <div class="pin"></div>
+  <div class="pin"></div>
+</div>
+
+
+   <script>var inc = 1000;
+
+    clock();
+    
+    function clock() {
+      const date = new Date();
+    
+      const hours = ((date.getHours() + 11) % 12 + 1);
+      const minutes = date.getMinutes();
+      const seconds = date.getSeconds();
+      
+      const hour = hours * 30;
+      const minute = minutes * 6;
+      const second = seconds * 6;
+      
+      document.querySelector('.hour').style.transform = `rotate(${hour}deg)`
+      document.querySelector('.minute').style.transform = `rotate(${minute}deg)`
+      document.querySelector('.second').style.transform = `rotate(${second}deg)`
+    }
+    
+    setInterval(clock, inc);
+
+
+    var elements = document.getElementsByClassName("op");
+up();
+const elements1=document.getElementById("wrap").children;
+
+
+
+function up(){
+
+for (var i = 0; i < elements.length; i++) {
+  var cur =elements[i];
+    elements[i].addEventListener('click', function(){
+ document.getElementsByClassName("og")[0].classList.add("op");
+ document.getElementsByClassName("og")[0].classList.remove("og");
+ this.classList.add("og");
+ this.classList.remove("op");
+ if(this.style.backgroundImage==='url("google.png")')
+ {
+  pre="https://www.google.com/search?&q="
+ }
+ else if(this.style.backgroundImage=='url("wiki.png")'){
+  pre="https://en.wikipedia.org/wiki/Special:Search?search="
+ }else if(this.style.backgroundImage==='url("lens.png")')
+ {
+  pre="https://www.google.com/search?tbm=isch&q="
+ }else if(this.style.backgroundImage==='url("hf.png")')
+ {
+  pre="https://huggingface.co/search/full-text?q="
+ }else if(this.style.backgroundImage==='url("duck.png")')
+ {
+  pre="https://ai1.anubhav0708.repl.co/url?query="
+ }else if(this.style.backgroundImage==='url("git.webp")')
+ {
+  pre="https://github.com/search?q="
+ }
+
+ this.removeEventListener('click',up);
+ 
+ up();
+    });
+}}
+
+
+var pre="https://www.google.com/search?&q=";
+function search(){
+var txt=document.getElementById("search").value;
+txt=txt.replace(" ", "+");
+location.assign(pre+txt);
+
+}
+
+
+
+document.getElementById("search").addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    search();
+  }
+});
+    </script>
+  </body>
+</html>
